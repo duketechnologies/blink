@@ -1,0 +1,39 @@
+{
+    "name": "duke/blink",
+    "description": "Phone validation and helpers",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Duke Technologies"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^v5.19.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Duke\\Blink\\BlinkServiceProvider"
+            ],
+            "aliases": {
+                "Blink": "Duke\\Blink\\Facades\\Blink"
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Duke\\Blink\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Duke\\Blink\\Tests\\": "tests/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}
