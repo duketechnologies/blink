@@ -10,7 +10,9 @@ class BlinkServiceProvider extends ServiceProvider
     {
         require_once __DIR__.'/helpers.php';
 
-        $this->commands([Commands\BlinkConfigCommand::class]);
+        $this->publishes([
+            __DIR__ . '/../config/blink.php' => config_path('blink.php'),
+        ]);
     }
 
     public function register()
@@ -19,10 +21,5 @@ class BlinkServiceProvider extends ServiceProvider
         {
             return new Blink;
         });
-    }
-
-    public function provides()
-    {
-        return [Commands\BlinkConfigCommand::class];
     }
 }
