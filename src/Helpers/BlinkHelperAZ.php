@@ -4,7 +4,7 @@ namespace Duke\Blink\Helpers;
 
 use Duke\Blink\Traits\ForHelpers;
 
-class AZHelper
+class BlinkHelperAZ
 {
     use ForHelpers;
 

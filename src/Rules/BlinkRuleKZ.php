@@ -4,7 +4,7 @@ namespace Duke\Blink\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class KZRule implements Rule
+class BlinkRuleKZ implements Rule
 {
     public function passes($attribute, $value)
     {
