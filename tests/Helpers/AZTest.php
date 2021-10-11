@@ -2,9 +2,8 @@
 
 namespace Duke\Blink\Tests\Helpers;
 
-use Duke\Blink\BlinkServiceProvider;
-use Duke\Blink\Helpers\AZHelper;
-use Orchestra\Testbench\TestCase;
+use Duke\Blink\Facades\Blink;
+use Duke\Blink\Tests\TestCase;
 use Validator;
 
 class AZTest extends TestCase
@@ -14,16 +13,14 @@ class AZTest extends TestCase
     public $beautify = '+994 11 222 33 44';
     public $hide = '+994 11 XXX XX 44';
 
-    protected function AZtPackaAZProviders($app)
+    protected function getEnvironmentSetUp($app)
     {
-        return [
-            BlinkServiceProvider::class,
-        ];
+        $app['config']->set('blink.country', 'AZ');
     }
 
     public function test_clear()
     {
-        $clear = (new AZHelper())->clear($this->incoming);
+        $clear = Blink::clear($this->incoming);
 
         var_dump($clear);
 
@@ -32,7 +29,7 @@ class AZTest extends TestCase
 
     public function test_beautify()
     {
-        $beautify = (new AZHelper())->beautify($this->clear);
+        $beautify = Blink::beautify($this->clear);
 
         var_dump($beautify);
 
@@ -41,7 +38,7 @@ class AZTest extends TestCase
 
     public function test_hide()
     {
-        $hide = (new AZHelper())->hide($this->clear);
+        $hide = Blink::hide($this->clear);
 
         var_dump($hide);
 
@@ -50,7 +47,7 @@ class AZTest extends TestCase
 
     public function test_mask()
     {
-        $fake = (new AZHelper())->mask();
+        $fake = Blink::mask();
 
         var_dump($fake);
 
@@ -59,7 +56,7 @@ class AZTest extends TestCase
 
     public function test_fake()
     {
-        $fake = (new AZHelper())->fake();
+        $fake = Blink::fake();
 
         var_dump($fake);
 

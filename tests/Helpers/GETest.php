@@ -2,9 +2,8 @@
 
 namespace Duke\Blink\Tests\Helpers;
 
-use Duke\Blink\BlinkServiceProvider;
-use Duke\Blink\Helpers\GEHelper;
-use Orchestra\Testbench\TestCase;
+use Duke\Blink\Facades\Blink;
+use Duke\Blink\Tests\TestCase;
 use Validator;
 
 class GETest extends TestCase
@@ -14,16 +13,14 @@ class GETest extends TestCase
     public $beautify = '+995 111 22 33 44';
     public $hide = '+995 111 XX XX 44';
 
-    protected function getPackageProviders($app)
+    protected function getEnvironmentSetUp($app)
     {
-        return [
-            BlinkServiceProvider::class,
-        ];
+        $app['config']->set('blink.country', 'GE');
     }
 
     public function test_clear()
     {
-        $clear = (new GEHelper())->clear($this->incoming);
+        $clear = Blink::clear($this->incoming);
 
         var_dump($clear);
 
@@ -32,7 +29,7 @@ class GETest extends TestCase
 
     public function test_beautify()
     {
-        $beautify = (new GEHelper())->beautify($this->clear);
+        $beautify = Blink::beautify($this->clear);
 
         var_dump($beautify);
 
@@ -41,7 +38,7 @@ class GETest extends TestCase
 
     public function test_hide()
     {
-        $hide = (new GEHelper())->hide($this->clear);
+        $hide = Blink::hide($this->clear);
 
         var_dump($hide);
 
@@ -50,7 +47,7 @@ class GETest extends TestCase
 
     public function test_mask()
     {
-        $fake = (new GEHelper())->mask();
+        $fake = Blink::mask();
 
         var_dump($fake);
 
@@ -59,7 +56,7 @@ class GETest extends TestCase
 
     public function test_fake()
     {
-        $fake = (new GEHelper())->fake();
+        $fake = Blink::fake();
 
         var_dump($fake);
 

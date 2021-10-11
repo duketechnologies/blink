@@ -46,7 +46,7 @@ class Blink
 
     public function call_function($method, $args)
     {
-        $classname = '\\Duke\\Blink\\Helpers\\' . self::parseCountries() . 'Helper';
+        $classname = '\\Duke\\Blink\\Helpers\\BlinkHelper' . self::parseCountries();
 
         try {
             return call_user_func([(new $classname), $method], ...$args);

@@ -2,9 +2,8 @@
 
 namespace Duke\Blink\Tests\Helpers;
 
-use Duke\Blink\BlinkServiceProvider;
-use Duke\Blink\Helpers\KZHelper;
-use Orchestra\Testbench\TestCase;
+use Duke\Blink\Facades\Blink;
+use Duke\Blink\Tests\TestCase;
 use Validator;
 
 class KZTest extends TestCase
@@ -14,16 +13,14 @@ class KZTest extends TestCase
     public $beautify = '+7 777 111 22 33';
     public $hide = '+7 777 XXX XX 33';
 
-    protected function getPackageProviders($app)
+    protected function getEnvironmentSetUp($app)
     {
-        return [
-            BlinkServiceProvider::class,
-        ];
+        $app['config']->set('blink.country', 'KZ');
     }
 
     public function test_clear()
     {
-        $clear = (new KZHelper())->clear($this->incoming);
+        $clear = Blink::clear($this->incoming);
 
         var_dump($clear);
 
@@ -32,7 +29,7 @@ class KZTest extends TestCase
 
     public function test_beautify()
     {
-        $beautify = (new KZHelper())->beautify($this->clear);
+        $beautify = Blink::beautify($this->clear);
 
         var_dump($beautify);
 
@@ -41,7 +38,7 @@ class KZTest extends TestCase
 
     public function test_hide()
     {
-        $hide = (new KZHelper())->hide($this->clear);
+        $hide = Blink::hide($this->clear);
 
         var_dump($hide);
 
@@ -50,7 +47,7 @@ class KZTest extends TestCase
 
     public function test_mask()
     {
-        $fake = (new KZHelper())->mask();
+        $fake = Blink::mask();
 
         var_dump($fake);
 
@@ -59,7 +56,7 @@ class KZTest extends TestCase
 
     public function test_fake()
     {
-        $fake = (new KZHelper())->fake();
+        $fake = Blink::fake();
 
         var_dump($fake);
 
