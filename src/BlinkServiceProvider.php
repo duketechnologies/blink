@@ -12,7 +12,7 @@ class BlinkServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/../config/blink.php' => config_path('blink.php'),
-        ]);
+        ], ['blink', 'duke-blink']);
     }
 
     public function register()
