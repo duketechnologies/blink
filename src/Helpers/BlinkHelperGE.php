@@ -28,7 +28,7 @@ class BlinkHelperGE
 
     public function mask()
     {
-        return addslashes('+\\9\\95 999 99 99 99');
+        return addslashes('+\9\95 999 99 99 99');
     }
 
     public function fake()
