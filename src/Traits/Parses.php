@@ -18,6 +18,6 @@ trait Parses
 
     public function parseEncryptKey()
     {
-        return config('blink.encrypt_key') ? config('blink.encrypt_key') : (env('APP_KEY') ? env('APP_KEY') : 'M,yHKZW#"A3$NrRv');
+        return config('blink.encrypt_key') ? config('blink.encrypt_key') : (env('BLINK_ENCRYPT_KEY') ? env('BLINK_ENCRYPT_KEY') : 'M,yHKZW#"A3$NrRv');
     }
 }
