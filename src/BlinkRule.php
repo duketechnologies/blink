@@ -4,10 +4,27 @@ namespace Duke\Blink;
 
 use Duke\Blink\Traits\Parses;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Validation\Validator;
 
 class BlinkRule implements Rule
 {
     use Parses;
+
+    public static function handle()
+    {
+        return 'blink';
+    }
+
+    public function validate($attribute, $value, $params, Validator $validator)
+    {
+        $handle = $this->handle();
+
+        $validator->setCustomMessages([
+            $handle => $this->message(),
+        ]);
+
+        return $this->passes($attribute, $value);
+    }
 
     public function passes($attribute, $value)
     {
