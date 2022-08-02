@@ -3,7 +3,6 @@
 namespace Duke\Blink;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Validator;
 
 class BlinkServiceProvider extends ServiceProvider
 {
@@ -22,7 +21,5 @@ class BlinkServiceProvider extends ServiceProvider
         {
             return new Blink;
         });
-
-        Validator::extend(BlinkRule::handle(), BlinkRule::class);
     }
 }
